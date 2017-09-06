@@ -1,0 +1,21 @@
+//https://stackoverflow.com/questions/43394110/how-to-customise-bootstrap-4-scss-variables-using-angular-cli-ng-bootstrap
+$gray-100: #f8f9fa;
+$gray-600: #868e96;
+$gray-800: #343a40;
+
+$red: #dc3545;
+$yellow: #ffc107;
+$green: #006600; // This is the only variable I wanted to change
+$cyan: #17a2b8;
+$blue: #337ab7;
+
+$theme-colors: (
+  primary: $blue,
+  secondary: $gray-600,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-100,
+  dark: $gray-800
+);

@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'dfberry.io';
+  tag=undefined;
+  urls=undefined;
+  currentTag:string=undefined;
+  tags=undefined;
 }
