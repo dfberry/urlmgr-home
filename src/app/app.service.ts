@@ -82,7 +82,6 @@ export class AppService {
       return this.http.get(url, options)
       .map((response: Response) => {
         let json = response.json();
-        debugger;
         let urls = json.data.urls;
         return urls;
       });

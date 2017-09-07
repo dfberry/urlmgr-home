@@ -4,15 +4,17 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "npm run build && http-server -p 3020 -g --cors dist",
+    "ng:help": "ng help",
+    "start": "npm run build && npm run httpserver",
     "start:prod": "npm run build:prod && http-server -p 3020 -g --cors dist",
-    "build": "ng build ",
-    "build:prod": "ng build --prod",
+    "build": "ng build --output-path=dist",
+    "build:prod": "ng build  --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postbuild": "cp ../config.json ./dist",
-    "postbuild:prod": "npm run postbuild"
+    "postbuild:prod": "npm run postbuild",
+    "httpserver": "http-server -p 3020 -g --cors dist"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +30,7 @@
     "bootstrap": "^4.0.0-beta",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
+    "jqcloud2": "^2.0.3",
     "jquery": "^3.2.1",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
