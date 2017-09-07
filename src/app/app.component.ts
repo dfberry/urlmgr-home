@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { AppService } from './app.service';
+import { SelectedTagComponent } from './selectedTag.component';
+import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router'; 
+
 import * as $ from 'jquery';
 import 'jqcloud2';
 
@@ -22,8 +25,18 @@ export class AppComponent {
     overflow: false,
   }
 
-  constructor(private appService:AppService){
+  constructor(
+    private appService:AppService,
+    private activatedRoute: ActivatedRoute ){
+      this.activatedRoute.fragment.subscribe ( f => {
+        //const element = document.querySelector ( "#" + f )
+        //if ( element ) element.scrollIntoView ( element )
+        console.log(f);
+        let tempTag = decodeURI(f);
+        this.tag = tempTag.substring(4,tempTag.length);
+        console.log(this.tag);
 
+    });
   }
   ngOnInit() {
     console.log("ngOnInit");
@@ -45,6 +58,6 @@ export class AppComponent {
 
   }
   ngOnChange(){
-
   }
+
 }
