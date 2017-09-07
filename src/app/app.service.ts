@@ -5,17 +5,17 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 
+
 @Injectable()
-export class HomeService {
+export class AppService {
 
   constructor(private http: Http) {}
-/*  
+  
   loadConfig() {
     return this.http
-    .get('config.json')
-    .map((response: Response) => response.json())
-    .catch(this._handleErrorObservable);
-}
+    .get('/config.json')
+    .map((response: Response) => response.json());
+  }
   loadCloud(config) {
 
     if(!config || !config.apiUrl) return Observable.throw('error constructing api url');
@@ -24,14 +24,16 @@ export class HomeService {
 
     return this.http
     .get(url)
-    .map((response: Response) => response.json())
-    .catch(this._handleErrorObservable);;
+    .map((response: Response) => {
+      let json = response.json();
+      let tags = json.data.tags;
+      return tags;
+    }).map(this.prepTagsForCloud);
 
   }
  
 
   //    determine weight
-
   prepTagsForCloud(tags){
     if(tags && tags.length>0){
 
@@ -71,15 +73,21 @@ export class HomeService {
       return tags;
     } 
   }
+
   loadUrlList(config): Observable<any>{
 
-      let url = config.apiUrl + "/url/public/";
+      let url = config.apiUrl + "urls/public/";
       let options = undefined;
 
       return this.http.get(url, options)
-      .map((response: Response) => response.json())
-      .catch(this._handleErrorObservable);;
+      .map((response: Response) => {
+        let json = response.json();
+        debugger;
+        let urls = json.data.urls;
+        return urls;
+      });
   }
+  /*
   // public url list
   // array of tags
   loadUrlsByTag(config,tags): Observable<any>{

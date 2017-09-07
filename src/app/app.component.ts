@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,18 @@ export class AppComponent {
   urls=undefined;
   currentTag:string=undefined;
   tags=undefined;
+  config=undefined;
+
+  constructor(private appService:AppService){
+    appService.loadConfig().subscribe(config => {
+      this.config = config;
+      
+      appService.loadCloud(this.config).subscribe(cloud => {
+        this.tags = cloud;
+        appService.loadUrlList(this.config).subscribe(urls => {
+          this.urls = urls;
+        });
+      });
+    });
+  }
 }
