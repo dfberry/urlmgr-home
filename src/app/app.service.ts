@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams } from '@angular/http';
-import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
+
 
 
 @Injectable()
 export class AppService {
 
-  constructor(private http: Http) {
-  }
+  constructor(private http: Http) {}
   
   loadConfig() {
     return this.http
@@ -59,10 +58,7 @@ export class AppService {
         console.log(tag);
         tag.text = tag.tag;
         
-        //tag.link = "#tag=" + encodeURI(tag.tag); 
-        //tag.handlers = {click: function(ev) { 
-        //  console.log(ev.target.text); 
-        //} };
+        tag.link = "#tag=" + encodeURI(tag.tag); 
         console.log(tag.link);
 
         if (index<currentSlice){
@@ -90,27 +86,26 @@ export class AppService {
         return urls;
       });
   }
-  
+  /*
   // public url list
   // array of tags
-  loadUrlsByTag(config,tag): Observable<any>{
+  loadUrlsByTag(config,tags): Observable<any>{
 
-      if(!config || !config.apiUrl || !tag) return Observable.of([]); 
+      let url = config.apiUrl + "/url/tags";
+      let options = undefined;        
 
-      let url = config.apiUrl + "urls/tags";
-      let options = undefined;  
-      let tagArray = [];
-      tagArray.push(tag);  
-      let tagObj = {tags: tagArray};
-
-      console.log(tagObj);
-
-      return this.http.post(url, tagObj)
+      return this.http.post(url, {tags: tags})
       .map((response: Response) => {
           let mydata = response.json();
           console.log(mydata);
-          if(mydata && mydata.data) return mydata.data;
-          return [];
-      });
+          return mydata.data;
+      }).catch(this._handleErrorObservable);
   }
+  _handleErrorObservable(err:any){
+      console.log("url.service _handleErrorObservable returned " + JSON.stringify(err));
+
+      console.log(err); //log this
+      //throw(err);
+      return Observable.of(err); // pass back for ux
+  }*/
 }
