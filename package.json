@@ -6,7 +6,8 @@
     "ng": "ng",
     "ng:help": "ng help",
     "start": "npm run build && npm run httpserver",
-    "start:prod": "npm run build:prod && http-server -p 3020 -g --cors dist",
+    "start:prod": "npm run build:prod && http-server -p 3004 -g --cors dist",
+    "start:dev": "npm run build && http-server -p 3004 -g --cors dist",
     "build": "ng build --output-path=dist",
     "build:prod": "ng build  --prod",
     "test": "ng test",
@@ -14,7 +15,7 @@
     "e2e": "ng e2e",
     "postbuild": "cp ../config.json ./dist",
     "postbuild:prod": "npm run postbuild",
-    "httpserver": "http-server -p 3020 -g --cors dist"
+    "httpserver": "http-server -p 3004 -g --cors dist"
   },
   "private": true,
   "dependencies": {
